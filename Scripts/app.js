@@ -7,7 +7,7 @@
 
     function addContact(fullName, contactNumber, emailAddress)
     {
-        let contact = new core.Contact();
+        let contact = new Contact(fullName, contactNumber, emailAddress);
         if (contact.serialize())
         {
             let key = contact.FullName.substring(0, 1) + Date.now();
@@ -75,7 +75,7 @@
         Article.setAttribute("class", "container")
 
     }
-    
+
     function DisplayProductsPage()
     {
         console.log("Products Page");
@@ -128,12 +128,12 @@
                          <td>${contact.fullName}</td>
                          <td>${contact.contactNumber}</td>
                          <td>${contact.EmailAddress}</td>
-                         <td>
+                         <td class="text-center">
                              <button value="${key}" class="btn btn-primary btn-sm mb-1 edit">
                                 <i class="fas fa-edit fa-sm">Edit</i>
                              </button>
                          </td>
-                         <td>
+                         <td class="text-center">
                          <button value="${key}" class="btn btn-danger btn-sm mb-1 delete">
                             <i class="fas fa-edit fa-sm">Delete</i>
                          </button></td>
@@ -176,6 +176,7 @@
                 $("#editButton").on("click", (event) => {
                     event.preventDefault();
                     addContact(fullname.value, contactnumber.value, EmailAddress.value);
+                    //refresh the contact list page
                     location.href = "contact-list.html"
                 });
                 $("#cancelButton").on("click", () => {
@@ -185,24 +186,24 @@
             default:
             {
                 //edit separation code
-                let contact = new Contact();
+                let contact = new core.Contact();
                 contact.deserialize(localStorage.getItem(page));
 
-                $("#fullname").val(contact.FullName);
-                $("#contactnumber").val(contact.ContactNumber);
+                $("#fullName").val(contact.FullName);
+                $("#contactNumber").val(contact.ContactNumber);
                 $("#emailAddress").val(contact.EmailAddress);
 
                 $("#editButton").on("click", (event) => {
                     event.preventDefault();
 
-                    contact.FullName = $("#fullname").val();
-                    contact.ContactNumber = $("#contactnumber").val();
+                    contact.FullName = $("#fullName").val();
+                    contact.ContactNumber = $("#contactNumber").val();
                     contact.EmailAddress = $("#emailAddress").val();
 
                     localStorage.setItem(page, contact.serialize());
 
 
-                    location.href = "contact-list.html"
+                    location.href = "contact-list.html";
                 });
             }
             break;
