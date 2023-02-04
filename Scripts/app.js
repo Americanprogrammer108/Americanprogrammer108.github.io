@@ -75,7 +75,7 @@
         Article.setAttribute("class", "container")
 
     }
-
+    
     function DisplayProductsPage()
     {
         console.log("Products Page");
