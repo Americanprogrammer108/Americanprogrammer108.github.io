@@ -1,0 +1,28 @@
+{
+  "user": [
+    {
+      "DisplayName": "John Lennon";
+      "EmailAddress": "Jlennnon@gmail.com";
+      "Username": "Muscleboy1208";
+      "Password": "123456";
+
+    },
+
+    {
+      "DisplayName": "John Doe";
+      "EmailAddress": "Johndoe@gmail.com";
+      "Username": "Anonymous?";
+      "Password": "password";
+
+    },
+
+    {
+      "DisplayName": "Chris Black";
+      "EmailAddress": "chris1082@gmail.com";
+      "Username": "Athlete123";
+      "Password": "Run50mph";
+
+    }
+
+  ]
+}
