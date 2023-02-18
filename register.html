@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+
+
+    <!-- CSS Section -->
+    <link rel="stylesheet" href="./Content/app.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.css">
+
+</head>
+<body>
+<header>
+
+</header>
+
+
+<main class="container">
+    <h1 class="mb-5">Register</h1>
+    <p>Create your own account. It's free and takes less than a minute to complete</p>
+    <div class="row justify-content-lg-justify g-3">
+        <form class="col-lg-6 col-md-10 col-sm-10">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="fullname" id="fullname" aria-describedby="Full Name Input" aria-label="Full name" placeholder="First Name" required>
+                <input type="text" class="form-control" name="fullname" id="fullname" aria-describedby="Full Name Input" aria-label="Full name" placeholder="Last Name" required>
+            </div>
+
+
+
+            <div class="input-group mb-3">
+                <input type="email" class="form-control" name="EmailAddress" id="EmailAddress" aria-describedby="Email Address Input" aria-label="Email Address" placeholder="Email Address" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" name="password" id="password" aria-describedby="Password Input" aria-label="Password" placeholder="Password" required>
+            </div>            <div class="input-group mb-3">
+                <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" aria-describedby="Password Input" aria-label="Password" placeholder="Confirm Password" required>
+            </div>
+
+            <button id="sendButton" type="submit" class="btn btn-primary">Register</button>
+            <button id="cancelButton" type="reset" class="btn btn-danger">Clear</button>
+        </form>
+
+
+    </div>
+    <br>
+    <div class="col-lg-4 col-md-4">
+    </div>
+</main>
+
+
+
+<!-- Scripting Section -->
+<script src="./Scripts/app.js"></script>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
