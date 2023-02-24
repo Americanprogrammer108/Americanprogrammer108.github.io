@@ -296,6 +296,9 @@
             console.log(lastNameTEXT);
             console.log(emailAddressTEXT);
             console.log(passwordTEXT);
+
+            let clearForm = document.getElementById("registrationform").reset();
+
         });
     }
     function DisplayLoginPage()
@@ -359,7 +362,7 @@
                $(this).trigger("focus"); //return the user back to fullname textbox
                $(this).trigger("select"); //highlight text in fullname textbox
                messagearea.addClass("alert alert-danger");
-               messagearea.text("Please enter a valid full name!");
+               messagearea.text("Please enter a valid first name!");
                messagearea.show();
                console.log("Name is null");
            }
@@ -387,16 +390,14 @@
 
         let lastNamePattern = /^[a-zA-Z]+$/;
         let messagearea = $("#ErrorMessage");
-
-       let lastNameTEXT = $(this).val();
         $("#lastname").on("blur", function() {
-            let firstNameTEXT = $("#lastname").val();
+            let lastNameTEXT = $("#lastname").val();
             if (lastNameTEXT == "")
             {
                 $(this).trigger("focus"); //return the user back to fullname textbox
                 $(this).trigger("select"); //highlight text in fullname textbox
                 messagearea.addClass("alert alert-danger");
-                messagearea.text("Please enter a valid full name!");
+                messagearea.text("Please enter a valid last name!");
                 messagearea.show();
                 console.log("Name is null");
             }
