@@ -3,6 +3,7 @@
 //IIFE - Immediately Invoked Function Expression
 //AKA - Anonymous Self-Executing Function
 
+
 (function (){
 
     function addContact(fullName, contactNumber, emailAddress)
@@ -273,7 +274,29 @@
 
     function DisplayRegisterPage()
     {
+        let messagearea = $("#ErrorMessage");
+        messagearea.hide();
+        console.log("Register page called");
+        TestFirstName();
+        TestLastName();
+        TestRegisterEmail();
+        TestPassword();
+        TestPassword2();
 
+        $("#sendButton").on("click", function(event){
+            event.preventDefault()
+            let firstNameTEXT = $("#firstname").val();
+            let lastNameTEXT = $("#lastname").val();
+            let emailAddressTEXT = $("#EmailAddress").val();
+            let passwordTEXT = $("#password").val();
+
+            //let newuser = new user(`${firstNameTEXT} ${lastNameTEXT}`, `${emailAddressTEXT}`, `${passwordTEXT}`);
+
+            console.log(firstNameTEXT);
+            console.log(lastNameTEXT);
+            console.log(emailAddressTEXT);
+            console.log(passwordTEXT);
+        });
     }
     function DisplayLoginPage()
     {
@@ -321,34 +344,79 @@
         });
     }
 
-    function TestFullName()
+    function TestFirstName()
     {
-        console.log("Called testfullname");
+        console.log("Called testfirstname");
 
-        let fullNamePattern = /^([A-Z][a-z]{1,3}\.?\s)?([A-Z][a-z]+)+([\s,-]([A-Z][a-z]+))*$/;
-        let messagearea = $("#messageArea");
+        let firstNamePattern = /^[a-zA-Z]+$/;
+        let messagearea = $("#ErrorMessage");
 
-        $("#fullname").on("blur", function()
+        $("#firstname").on("blur", function()
         {
-           let fullNameTEXT = $(this).val();
-           if(fullNamePattern.test(fullNameTEXT))
+           let firstNameTEXT = $("#firstname").val();
+           if(firstNameTEXT == "")
            {
-               //pass validation
-               messagearea.removeAttr("class");
-               messagearea.hide();
-
-
-           }
-           else
-           {
-               //fail validation
                $(this).trigger("focus"); //return the user back to fullname textbox
                $(this).trigger("select"); //highlight text in fullname textbox
                messagearea.addClass("alert alert-danger");
                messagearea.text("Please enter a valid full name!");
                messagearea.show();
+               console.log("Name is null");
+           }
+           else if(!firstNamePattern.test(firstNameTEXT))
+           {
+               $(this).trigger("focus"); //return the user back to fullname textbox
+               $(this).trigger("select"); //highlight text in fullname textbox
+               messagearea.addClass("alert alert-danger");
+               messagearea.text("First Name is not valid!");
+               messagearea.show();
+               console.log("Name is not valid");
+           }
+           else
+           {
+               //pass validation
+               messagearea.removeAttr("class");
+               messagearea.hide();
            }
         });
+    }
+
+    function TestLastName()
+    {
+        console.log("Called testlastname");
+
+        let lastNamePattern = /^[a-zA-Z]+$/;
+        let messagearea = $("#ErrorMessage");
+
+       let lastNameTEXT = $(this).val();
+        $("#lastname").on("blur", function() {
+            let firstNameTEXT = $("#lastname").val();
+            if (lastNameTEXT == "")
+            {
+                $(this).trigger("focus"); //return the user back to fullname textbox
+                $(this).trigger("select"); //highlight text in fullname textbox
+                messagearea.addClass("alert alert-danger");
+                messagearea.text("Please enter a valid full name!");
+                messagearea.show();
+                console.log("Name is null");
+            }
+            else if (!lastNamePattern.test(lastNameTEXT))
+            {
+                $(this).trigger("focus"); //return the user back to fullname textbox
+                $(this).trigger("select"); //highlight text in fullname textbox
+                messagearea.addClass("alert alert-danger");
+                messagearea.text("First Name is not valid!");
+                messagearea.show();
+                console.log("Name is not valid");
+            }
+            else
+            {
+                //pass validation
+                messagearea.removeAttr("class");
+                messagearea.hide();
+            }
+        });
+
     }
     function TestFullName()
     {
@@ -391,12 +459,56 @@
             if(!(EmailPattern.test(EmailTEXT)))
             {
                 //fail validation
-                $(this).trigger("focus"); //return the user back to fullname textbox
-                $(this).trigger("select"); //highlight text in fullname textbox
-                messagearea.addClass("alert alert-danger");
-                messagearea.text("Please enter a valid email!");
-                messagearea.show();
+                if (EmailTEXT == "")
+                {
+                    $(this).trigger("focus"); //return the user back to fullname textbox
+                    $(this).trigger("select"); //highlight text in fullname textbox
+                    messagearea.addClass("alert alert-danger");
+                    messagearea.text("Please enter a valid email!");
+                    messagearea.show();
+                }
+                else
+                {
+                    messagearea.addClass("alert alert-danger");
+                    messagearea.text("Email must have an @ symbol!");
+                    messagearea.show();
+                }
 
+            }
+            else
+            {
+                //pass validation
+                messagearea.removeAttr("class");
+                messagearea.hide();
+            }
+        });
+    }
+
+    function TestRegisterEmail()
+    {
+        let EmailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,10}$/;
+        let messagearea = $("#ErrorMessage");
+
+        $("#EmailAddress").on("blur", function()
+        {
+            let EmailTEXT = $(this).val();
+            if(!(EmailPattern.test(EmailTEXT)))
+            {
+                //fail validation
+                if (EmailTEXT == "")
+                {
+                    $(this).trigger("focus"); //return the user back to fullname textbox
+                    $(this).trigger("select"); //highlight text in fullname textbox
+                    messagearea.addClass("alert alert-danger");
+                    messagearea.text("Please enter a valid email!");
+                    messagearea.show();
+                }
+                else
+                {
+                    messagearea.addClass("alert alert-danger");
+                    messagearea.text("Email must have an @ symbol!");
+                    messagearea.show();
+                }
 
             }
             else
@@ -434,6 +546,79 @@
                 messagearea.hide();
             }
         });
+    }
+
+    //validate for password field
+    function TestPassword()
+    {
+        let messagearea = $("#ErrorMessage");
+        let PasswordPattern = /(?=.{6,})/;
+        let confirmpassword = $("#confirmpassword").val();
+        //check length
+        $("#password").on("blur", function()
+        {
+            let PasswordTEXT = $(this).val();
+            if(PasswordTEXT.length < 6)
+            {
+                if (PasswordTEXT == "")
+                {
+                    $(this).trigger("focus"); //return the user back to fullname textbox
+                    $(this).trigger("select"); //highlight text in fullname textbox
+                    messagearea.addClass("alert alert-danger");
+                    messagearea.text("Please enter a password!");
+                    messagearea.show();
+                }
+                else
+                {
+                    $(this).trigger("focus"); //return the user back to fullname textbox
+                    $(this).trigger("select"); //highlight text in fullname textbox
+                    messagearea.addClass("alert alert-danger");
+                    messagearea.text("This password is not strong enough. Try another one.");
+                    messagearea.show();
+                }
+
+            }
+            else if (!PasswordPattern.test(PasswordTEXT))
+            {
+                console.log("Not enough to secure it.");
+
+            }
+            else
+            {
+                console.log("Password secured");
+                messagearea.removeAttr("class");
+                messagearea.hide();
+            }
+
+
+            //console.log(PasswordTEXT);
+        });
+    }
+
+    //validate to see if both passwords match
+    function TestPassword2()
+    {
+        let messagearea = $("#ErrorMessage");
+
+        $("#confirmpassword").on("blur", function()
+        {
+            let PasswordTEXT = $("#password").val();
+            let ConfirmPassword = $("#confirmpassword").val();
+            if(PasswordTEXT != ConfirmPassword)
+            {
+                $(this).trigger("focus"); //return the user back to fullname textbox
+                $(this).trigger("select"); //highlight text in fullname textbox
+                messagearea.addClass("alert alert-danger");
+                messagearea.text("The passwords do not match! Try again.");
+                messagearea.show();
+            }
+            else
+            {
+                messagearea.removeAttr("class");
+                messagearea.hide();
+            }
+        });
+
     }
     /**
      * This function will validate input fields provided based on a given regular expression

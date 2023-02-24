@@ -10,6 +10,11 @@
            this.emailAddress = emailAddress;
            this.username = username;
            this.password = password;
+
+           console.log(this.displayName);
+           console.log(this.emailAddress);
+           console.log(this.username);
+           console.log(this.password);
        }
 
        //start of getters
