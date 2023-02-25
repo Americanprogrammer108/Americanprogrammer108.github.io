@@ -1,4 +1,3 @@
-"user strict";
 
 (function (core)
 {
@@ -40,19 +39,19 @@
        //end of getters
 
        //start of setters
-       set EmailAddress()
+       set EmailAddress(EMAIL)
        {
-           this.emailAddress = emailAddress;
+           this.emailAddress = EMAIL;
        }
-       set Name()
+       set Name(displayName)
        {
-           this.displayName = DisplayName;
+           this.displayName = displayName;
        }
-       set Username()
+       set Username(Username)
        {
            this.username = Username;
        }
-       set Password()
+       set Password(Password)
        {
            this.password = Password;
        }
@@ -63,13 +62,15 @@
            return `DisplayName: ${this.displayName}\n Email Address: ${this.emailAddress}\n Username: ${this.username}`;
        }
 
+
+
        toJSON()
        {
            return {
-               "DisplayName": this.displayName;
-               "EmailaAddress": this.emailAddress;
-               "Username": this.username;
-               "Password": this.password;
+               "DisplayName": this.displayName,
+               "EmailaAddress": this.emailAddress,
+               "Username": this.username,
+               "Password": this.password
            }
        }
 
@@ -99,5 +100,6 @@
            this.username = propertyArray[2];
        }
    }
+   core.user = user;
 
-});
+})(core || (core= {}));
