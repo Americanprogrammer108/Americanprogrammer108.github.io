@@ -714,6 +714,11 @@
                 }
 
             });
+                        $("#loginButton").on("click",function (){
+                $("#Navusername").text("tester");
+                $("#Navusername").removeAttr("disabled");
+
+        })
             $("#cancelButton").on("click", function()
             {
                 document.forms[0].reset();
