@@ -714,11 +714,11 @@
                 }
 
             });
-                        $("#loginButton").on("click",function (){
-                $("#Navusername").text("tester");
-                $("#Navusername").removeAttr("disabled");
-
-        })
+                        
+            $("#loginButton").on("click", function(){
+                $("#USERNAME").text("Random");
+                
+            });
             $("#cancelButton").on("click", function()
             {
                 document.forms[0].reset();
