@@ -684,7 +684,8 @@
         messageArea.hide();
 
         $("#loginButton").on("click", function ()
-        {
+        {    
+            $("#USERNAME").text($("#userName").text());
             let success = false;
             let newUser = new core.user();
 
@@ -715,10 +716,6 @@
 
             });
                         
-            $("#loginButton").on("click", function(){
-                $("#USERNAME").text("Random");
-                
-            });
             $("#cancelButton").on("click", function()
             {
                 document.forms[0].reset();
