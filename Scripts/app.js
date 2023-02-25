@@ -2,13 +2,89 @@
 
 //IIFE - Immediately Invoked Function Expression
 //AKA - Anonymous Self-Executing Function
+/**
+ * Ethan Chen (100832859)
+ * Samreet Singh Sandhu (SAMREETSINGH.SANDHU)
+ * Completed on February 24, 2023
+ *
+ */
+
+
 
 
 (function (){
 
+    class user
+    {
+        constructor(firstName = "", lastName = "", emailAddress = "", username = "", password = "")
+        {
+            this.first = firstName;
+            this.last = lastName;
+            this.emailAddress = emailAddress;
+            this.username = username;
+            this.password = password;
+
+            console.log(this.first);
+            console.log(this.last);
+            console.log(this.emailAddress);
+            console.log(this.username);
+            console.log(this.password);
+        }
+
+        //start of getters
+        get FIRSTName()
+        {
+            return this.first;
+        }
+        get LASTName()
+        {
+            return this.last;
+        }
+
+        get Emailaddress()
+        {
+            return this.emailAddress;
+        }
+
+        get Username()
+        {
+            return this.username;
+        }
+
+        get Password()
+        {
+            return this.password;
+        }
+        //end of getters
+
+        //start of setters
+        set EmailAddress(email)
+        {
+            this.emailAddress = email;
+        }
+        set FIRSTName(F_NAME)
+        {
+            this.first = F_NAME;
+        }
+
+        set FIRSTName(L_NAME)
+        {
+            this.last = L_NAME;
+        }
+        set Username(username)
+        {
+            this.username = username;
+        }
+        set Password(Password)
+        {
+            this.password = Password;
+        }
+        //end of setters
+    }
+
     function addContact(fullName, contactNumber, emailAddress)
     {
-        let contact = new Contact(fullName, contactNumber, emailAddress);
+        let contact= new Contact(fullName, contactNumber, emailAddress);
         if (contact.serialize())
         {
             let key = contact.FullName.substring(0, 1) + Date.now();
@@ -289,13 +365,11 @@
             let lastNameTEXT = $("#lastname").val();
             let emailAddressTEXT = $("#EmailAddress").val();
             let passwordTEXT = $("#password").val();
+            let usernameTEXT = emailAddressTEXT.substring(0, emailAddressTEXT.indexOf("@"));
 
-            //let newuser = new user(`${firstNameTEXT} ${lastNameTEXT}`, `${emailAddressTEXT}`, `${passwordTEXT}`);
+            let newuser = new user(`${firstNameTEXT}`, `${lastNameTEXT}`, `${emailAddressTEXT}`, `${usernameTEXT}`, `${passwordTEXT}`);
 
-            console.log(firstNameTEXT);
-            console.log(lastNameTEXT);
-            console.log(emailAddressTEXT);
-            console.log(passwordTEXT);
+            console.log(newuser);
 
             let clearForm = document.getElementById("registrationform").reset();
 
@@ -312,6 +386,9 @@
         {
             let success = false;
             let newuser = new core.user();
+            let take1 = $("#username");
+
+            take1.content = "123";
 
             $.get("./data/user.json", function() {
                 for (const user of data.user)
@@ -364,7 +441,6 @@
                messagearea.addClass("alert alert-danger");
                messagearea.text("Please enter a valid first name!");
                messagearea.show();
-               console.log("Name is null");
            }
            else if(!firstNamePattern.test(firstNameTEXT))
            {
@@ -373,7 +449,14 @@
                messagearea.addClass("alert alert-danger");
                messagearea.text("First Name is not valid!");
                messagearea.show();
-               console.log("Name is not valid");
+           }
+           else if (firstNameTEXT.length < 2)
+           {
+               $(this).trigger("focus"); //return the user back to fullname textbox
+               $(this).trigger("select"); //highlight text in fullname textbox
+               messagearea.addClass("alert alert-danger");
+               messagearea.text("First Name length should be > 2!");
+               messagearea.show();
            }
            else
            {
@@ -399,16 +482,22 @@
                 messagearea.addClass("alert alert-danger");
                 messagearea.text("Please enter a valid last name!");
                 messagearea.show();
-                console.log("Name is null");
             }
             else if (!lastNamePattern.test(lastNameTEXT))
             {
                 $(this).trigger("focus"); //return the user back to fullname textbox
                 $(this).trigger("select"); //highlight text in fullname textbox
                 messagearea.addClass("alert alert-danger");
-                messagearea.text("First Name is not valid!");
+                messagearea.text("Last Name is not valid!");
                 messagearea.show();
-                console.log("Name is not valid");
+            }
+            else if (lastNameTEXT.length < 2)
+            {
+                $(this).trigger("focus"); //return the user back to fullname textbox
+                $(this).trigger("select"); //highlight text in fullname textbox
+                messagearea.addClass("alert alert-danger");
+                messagearea.text("Last name length should be > than 2!");
+                messagearea.show();
             }
             else
             {
@@ -487,8 +576,10 @@
 
     function TestRegisterEmail()
     {
-        let EmailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,10}$/;
+        let EmailPattern = /^[A-Za-z1-9]{2,}@[A-Za-z1-9]{2,}.[A-Za-z1-9]{2,}$/;
         let messagearea = $("#ErrorMessage");
+        // /^[{8,}+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,10}$/
+
 
         $("#EmailAddress").on("blur", function()
         {
@@ -504,7 +595,15 @@
                     messagearea.text("Please enter a valid email!");
                     messagearea.show();
                 }
-                else
+                else if(EmailTEXT.length < 8)
+                {
+                    $(this).trigger("focus"); //return the user back to fullname textbox
+                    $(this).trigger("select"); //highlight text in fullname textbox
+                    messagearea.addClass("alert alert-danger");
+                    messagearea.text("Email must have a length of 8 or more!");
+                    messagearea.show();
+                }
+                else if(!EmailTEXT.includes("@"))
                 {
                     messagearea.addClass("alert alert-danger");
                     messagearea.text("Email must have an @ symbol!");
