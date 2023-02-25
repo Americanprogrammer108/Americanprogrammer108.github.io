@@ -684,12 +684,15 @@
         messageArea.hide();
 
         $("#loginButton").on("click", function ()
-        {    
-            $("#USERNAME").text($("#userName").text());
+        {
             let success = false;
             let newUser = new core.user();
 
-            $.get("./data/users.json", function (data)
+            let emailAddressTEXT = $("#EmailAddress").val();
+            let usernameTEXT = $("#userName").val();
+            $("#navbarSupportedContent").append(`<li class="nav-link"><a href="#" id="usernamebox"></a>`, usernameTEXT, `</li>`);
+            document.getElementById("USERNAME");
+            $.get("./data/user.json", function (data)
             {
                 for(const user of data.users)
                 {
@@ -715,7 +718,6 @@
                 }
 
             });
-                        
             $("#cancelButton").on("click", function()
             {
                 document.forms[0].reset();
