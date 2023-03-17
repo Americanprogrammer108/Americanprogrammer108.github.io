@@ -1,9 +1,2 @@
 "use strict";
-let core;
-
-(function (core)
-{
-    let Contact;
-    core.Contact = Contact;
-
-}) (core || (core = {}));
+//# sourceMappingURL=namespace.js.map
