@@ -8,7 +8,7 @@
     {
         if(!sessionStorage.getItem("user"))
         {
-            location.href = "/login";
+            location.href = "/Views/content/login";
         }
     }
 

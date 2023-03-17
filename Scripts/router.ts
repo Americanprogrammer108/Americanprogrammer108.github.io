@@ -5,6 +5,7 @@ namespace core
    export class Router
    {
        private m_activeLink : string;
+       private m_linkData : string;
        private m_routingTable : string[];
        /**
         *
@@ -27,11 +28,27 @@ namespace core
             this.m_activeLink = link;
         }
 
+       public get LinkData() : string
+       {
+           return this.m_linkData;
+       }
+
+       /**
+        *
+        * @param link
+        * @constructor
+        */
+       public set LinkData(link : string)
+       {
+           this.m_linkData = link;
+       }
+
        //constructor
        constructor()
        {
            this.m_activeLink = "";
            this.m_routingTable = [];
+           this.m_linkData = "";
        }
 
 
@@ -83,7 +100,8 @@ router.addTable(
         "/products",
         "/register",
         "/login",
-        "/edit"
+        "/edit",
+        "/task-list"
     ]
 );
 
