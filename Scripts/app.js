@@ -255,7 +255,7 @@
                     messageArea.removeAttr("class").hide();
                     console.log("3214")
                     LoadLink("contact-list");
-                    $(`<li class="nav-item" id="task"> <a class="nav-link" data="task-list"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("ul>li#contact");
+                    $(`<li class="nav-item" id="task"> <a class="nav-link" data="task-list" href="task-list"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("ul>li#contact");
                 }
                 else {
                     $("#username").trigger("focus").trigger("select");
