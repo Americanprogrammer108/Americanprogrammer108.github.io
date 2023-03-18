@@ -445,6 +445,7 @@
     function DisplayLoginPage(): void 
     {
         console.log("Login Page");
+        console.log("123");
         let messageArea =  $("#messageArea");
         messageArea.hide();
         AddLinkEvents("register");
