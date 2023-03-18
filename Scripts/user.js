@@ -1,72 +1,73 @@
 "use strict";
-"user strict";
 var core;
 (function (core) {
-    class user {
+    class User {
         m_displayName;
         m_emailAddress;
         m_username;
         m_password;
+        get DisplayName() {
+            return this.m_displayName;
+        }
+        set DisplayName(name) {
+            this.m_displayName = name;
+        }
+        get EmailAddress() {
+            return this.m_emailAddress;
+        }
+        set EmailAddress(email_address) {
+            this.m_emailAddress = email_address;
+        }
+        get Username() {
+            return this.m_username;
+        }
+        set Username(username) {
+            this.m_username = username;
+        }
+        get Password() {
+            return this.m_password;
+        }
+        set Password(password) {
+            this.m_password = password;
+        }
         constructor(displayName = "", emailAddress = "", username = "", password = "") {
             this.m_displayName = displayName;
             this.m_emailAddress = emailAddress;
             this.m_username = username;
             this.m_password = password;
         }
-        get Name() {
-            return this.m_displayName;
-        }
-        get EmailAddress() {
-            return this.m_emailAddress;
-        }
-        get Username() {
-            return this.m_username;
-        }
-        get Password() {
-            return this.m_password;
-        }
-        set EmailAddress(email) {
-            this.EmailAddress = email;
-        }
-        set Name(displayname) {
-            this.m_displayName = displayname;
-        }
-        set Username(username) {
-            this.Username = username;
-        }
-        set Password(password) {
-            this.Password = password;
-        }
         toString() {
-            return `DisplayName: ${this.m_displayName}\n Email Address: ${this.m_emailAddress}\n Username: ${this.m_username}`;
+            return `Display Name    : ${this.DisplayName} \nEmail Address : ${this.EmailAddress} \nUsername : ${this.Username}`;
         }
         toJSON() {
             return {
-                "DisplayName": this.m_displayName,
-                "EmailAddress": this.m_emailAddress,
-                "Username": this.m_username
+                "DisplayName": this.DisplayName,
+                "EmailAddress": this.EmailAddress,
+                "Username": this.Username
             };
         }
         fromJSON(data) {
-            this.m_displayName = data.Name;
-            this.m_emailAddress = data.EmailAddress;
-            this.m_username = data.Username;
-            this.m_password = data.Password;
+            this.DisplayName = data.DisplayName;
+            this.EmailAddress = data.EmailAddress;
+            this.Username = data.Username;
+            this.Password = data.Password;
         }
         serialize() {
-            if (this.m_displayName != "" && this.m_emailAddress != "" && this.m_username != "") {
-                return `${this.m_displayName}, ${this.m_emailAddress}, ${this.m_username}`;
+            if (this.DisplayName !== "" && this.EmailAddress !== "" && this.Username !== "") {
+                return `${this.DisplayName},${this.EmailAddress},${this.Username}`;
             }
-            console.error("One or more of the properties of the Contact object are missing or invalid!");
-            return null;
+            else {
+                console.error("One or more properties of the User is empty");
+                return null;
+            }
         }
         deserialize(data) {
             let propertyArray = data.split(",");
-            this.m_displayName = propertyArray[0];
-            this.m_emailAddress = propertyArray[1];
-            this.m_username = propertyArray[2];
+            this.DisplayName = propertyArray[0];
+            this.EmailAddress = propertyArray[1];
+            this.Username = propertyArray[2];
         }
     }
-    core.user = user;
+    core.User = User;
 })(core || (core = {}));
 //# sourceMappingURL=user.js.map

@@ -4,45 +4,47 @@ var core;
     class Contact {
         m_fullName;
         m_contactNumber;
-        m_EmailAddress;
-        constructor(fullName = "", contactNumber = "", emailAddress = "") {
-            this.m_fullName = fullName;
-            this.m_contactNumber = contactNumber;
-            this.m_EmailAddress = emailAddress;
-        }
+        m_emailAddress;
         get FullName() {
             return this.m_fullName;
-        }
-        get Email() {
-            return this.m_EmailAddress;
-        }
-        get ContactNumber() {
-            return this.m_contactNumber;
         }
         set FullName(fullName) {
             this.m_fullName = fullName;
         }
-        set Email(emailAddress) {
-            this.m_EmailAddress = emailAddress;
+        get ContactNumber() {
+            return this.m_contactNumber;
         }
         set ContactNumber(contactNumber) {
             this.m_contactNumber = contactNumber;
         }
-        toString() {
-            return `Full Name: " ${this.m_fullName}\n Contact Number: ${this.m_contactNumber}\n Email Address: ${this.m_EmailAddress}`;
+        get EmailAddress() {
+            return this.m_emailAddress;
+        }
+        set EmailAddress(emailAddress) {
+            this.m_emailAddress = emailAddress;
+        }
+        constructor(fullName = "", contactNumber = "", emailAddress = "") {
+            this.m_fullName = fullName;
+            this.m_contactNumber = contactNumber;
+            this.m_emailAddress = emailAddress;
         }
         serialize() {
-            if (this.FullName != "" && this.ContactNumber != "" && this.Email != "") {
-                return `${this.m_fullName}, ${this.m_contactNumber}, ${this.m_EmailAddress}`;
+            if (this.FullName !== "" && this.ContactNumber !== "" && this.EmailAddress !== "") {
+                return `${this.FullName},${this.ContactNumber},${this.EmailAddress}`;
             }
-            console.error("One or more of the properties of the Contact object are missing or invalid!");
-            return null;
+            else {
+                console.error("One or more properties of the Contact are missing or empty");
+                return null;
+            }
         }
         deserialize(data) {
             let propertyArray = data.split(",");
-            this.m_fullName = propertyArray[0];
-            this.m_contactNumber = propertyArray[1];
-            this.m_EmailAddress = propertyArray[2];
+            this.FullName = propertyArray[0];
+            this.ContactNumber = propertyArray[1];
+            this.EmailAddress = propertyArray[2];
+        }
+        toString() {
+            return `Full Name     : ${this.FullName}\nContact Number: ${this.ContactNumber}\nEmail Address : ${this.EmailAddress}`;
         }
     }
     core.Contact = Contact;

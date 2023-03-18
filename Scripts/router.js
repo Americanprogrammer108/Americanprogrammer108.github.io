@@ -3,6 +3,7 @@ var core;
 (function (core) {
     class Router {
         m_activeLink;
+        m_linkData;
         m_routingTable;
         get ActiveLink() {
             return this.m_activeLink;
@@ -10,22 +11,29 @@ var core;
         set ActiveLink(link) {
             this.m_activeLink = link;
         }
+        get LinkData() {
+            return this.m_linkData;
+        }
+        set LinkData(data) {
+            this.m_linkData = data;
+        }
         constructor() {
             this.m_activeLink = "";
+            this.m_linkData = "";
             this.m_routingTable = [];
         }
-        add(route) {
+        Add(route) {
             this.m_routingTable.push(route);
         }
-        addTable(routeTable) {
-            this.m_routingTable = routeTable;
+        AddTable(routingTable) {
+            this.m_routingTable = routingTable;
         }
-        find(route) {
+        Find(route) {
             return this.m_routingTable.indexOf(route);
         }
-        remove(route) {
-            if (this.find(route) > -1) {
-                this.m_routingTable.splice(this.find(route), 1);
+        Remove(route) {
+            if (this.Find(route) > -1) {
+                this.m_routingTable.splice(this.Find(route), 1);
                 return true;
             }
             return false;
@@ -37,7 +45,7 @@ var core;
     core.Router = Router;
 })(core || (core = {}));
 let router = new core.Router();
-router.addTable([
+router.AddTable([
     "/",
     "/home",
     "/about",
@@ -47,11 +55,8 @@ router.addTable([
     "/products",
     "/register",
     "/login",
-    "/edit",
-    "/task-list"
+    "/edit"
 ]);
 let route = location.pathname;
-router.ActiveLink = (router.find(route) > -1)
-    ? (route === "/") ? "home" : route.substring(1)
-    : ("404");
+router.ActiveLink = (router.Find(route) > -1) ? (route == "/") ? "home" : route.substring(1) : "404";
 //# sourceMappingURL=router.js.map

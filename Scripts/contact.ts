@@ -1,80 +1,100 @@
-"use strict";
-
 namespace core
 {
     export class Contact
     {
+        // private instance members
         private m_fullName: string;
         private m_contactNumber: string;
-        private m_EmailAddress: string;
+        private m_emailAddress: string;
 
-        constructor(fullName = "", contactNumber = "", emailAddress = "")
-        {
-            this.m_fullName = fullName;
-            this.m_contactNumber = contactNumber;
-            this.m_EmailAddress = emailAddress;
-
-        }
-
-        //start of getters
-        public get FullName()
+        // public properties (getters and setters)
+        public get FullName(): string
         {
             return this.m_fullName;
         }
 
-        public get Email()
-        {
-            return this.m_EmailAddress;
-        }
-
-        public get ContactNumber()
-        {
-            return this.m_contactNumber;
-        }
-        //end of getters
-
-        //start of setters
         public set FullName(fullName: string)
         {
             this.m_fullName = fullName;
         }
 
-        public set Email(emailAddress: string)
+        public get ContactNumber(): string
         {
-            this.m_EmailAddress = emailAddress;
+            return this.m_contactNumber;
         }
 
-        public set ContactNumber(contactNumber : string)
+        public set ContactNumber(contactNumber: string)
         {
             this.m_contactNumber = contactNumber;
         }
-        //end of setters
 
-        //override
-        toString()
+        public get EmailAddress(): string
         {
-            return `Full Name: " ${this.m_fullName}\n Contact Number: ${this.m_contactNumber}\n Email Address: ${this.m_EmailAddress}`;
+            return this.m_emailAddress;
         }
 
-        public serialize() : string | null
+        public set EmailAddress(emailAddress: string)
         {
-            if (this.FullName != "" && this.ContactNumber != "" && this.Email != "")
+            this.m_emailAddress = emailAddress;
+        }
+
+        // constructor
+        constructor(fullName: string = "", contactNumber: string = "", emailAddress: string = "") // default parameters
+        {
+            this.m_fullName = fullName;
+            this.m_contactNumber = contactNumber;
+            this.m_emailAddress = emailAddress;
+        }
+
+        // public methods
+
+        /**
+         * This method converts the object's properties to a comma-separated string
+         *
+         * @returns {(string | null)}
+         */
+        serialize(): string | null
+        {
+            if(this.FullName !== "" && this.ContactNumber !== "" && this.EmailAddress !== "")
             {
-                return `${this.m_fullName}, ${this.m_contactNumber}, ${this.m_EmailAddress}`;
+                return `${this.FullName},${this.ContactNumber},${this.EmailAddress}`;
             }
-            console.error("One or more of the properties of the Contact object are missing or invalid!");
-            return null;
+            else
+            {
+                console.error("One or more properties of the Contact are missing or empty");
+                return null;
+            }
         }
 
-        public deserialize(data : string)
+        /**
+         * This method separates the data string parameter into the object's properties
+         *
+         * @param {string} data
+         * @returns {void}
+         */
+        deserialize(data: string): void // assume that data is a comma-separated list of properties (strings)
         {
-            let propertyArray = data.split(",");
-            this.m_fullName = propertyArray[0];
-            this.m_contactNumber = propertyArray[1];
-            this.m_EmailAddress = propertyArray[2];
+            let propertyArray: string[] = data.split(",");
+            this.FullName = propertyArray[0];
+            this.ContactNumber = propertyArray[1];
+            this.EmailAddress = propertyArray[2];
         }
 
+        // public overrides
 
+        /**
+         * This method overrides the built-in toString method 
+         * and returns a string that contains the values of the object's properties
+         * @override
+         * @returns {string}
+         */
+        toString(): string
+        {
+            return `Full Name     : ${this.FullName}\nContact Number: ${this.ContactNumber}\nEmail Address : ${this.EmailAddress}`;
+        }
     }
 
 }
+
+
+
