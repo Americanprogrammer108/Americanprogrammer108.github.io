@@ -139,6 +139,7 @@
         });
     }
     function DisplayContactListPage() {
+        console.log("Contact List page called");
         if (localStorage.length > 0) {
             let contactList = document.getElementById("contactList");
             let data = "";
@@ -225,6 +226,7 @@
                 sessionStorage.clear();
                 AddNavigationEvents();
                 LoadLink("login");
+                $("#task").remove();
 
             });
         }
@@ -252,12 +254,8 @@
                     sessionStorage.setItem("user", newUser.serialize());
                     messageArea.removeAttr("class").hide();
                     console.log("3214")
-                    //$(`<li class="nav-item" data="task-list" href="./Views/content/task-list.html" > <a class="nav-link"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("li");
-
                     LoadLink("contact-list");
-                    //$(`<li class="nav-item"> <a class="nav-link"><i class="fas fa-person-circle-check"> </i>` +  $("#username").val() + `</a>`).insertAfter("li");
-                    //$(`<li class="nav-item" data="task-list"> <a class="nav-link"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("li");
-                    //$(`<li><a class="nav-link" data="task-list" href="./Views/content/task-list.html"><i class="fas fa-envelope"></i> Task List</a></li>`).insertAfter("li");
+                    $(`<li class="nav-item" id="task"> <a class="nav-link" data="task-list" href="./Views/content/task-list.html"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("ul>li#contact");
                 }
                 else {
                     $("#username").trigger("focus").trigger("select");
@@ -304,7 +302,7 @@
         });
 
         // Edit an Item in the Task List
-        $("ul").on("click", ".editButton", function()
+        $("ul").on("click", ".editTaskButton", function()
         {
             let editText = $(this).parent().parent().children(".editTextInput");
             let text = $(this).parent().parent().text();
@@ -330,7 +328,7 @@
         });
 
         // Delete a Task from the Task List
-        $("ul").on("click", ".deleteButton", function(){
+        $("ul").on("click", ".deleteTaskButton", function(){
             if(confirm("Are you sure?"))
             {
                 $(this).closest("li").remove();
