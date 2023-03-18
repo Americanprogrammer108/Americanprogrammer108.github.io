@@ -1,42 +1,75 @@
-<h1>Contact Us</h1>
-<div id="messageArea"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
 
-<div class="row justify-content-lg-center g-3">
-  <form class="col-lg-6 col-md-10 col-sm-10">
+    <!-- CSS Section -->
+    <link rel="stylesheet" href="../../Content/app.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.css">
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">Full Name</span>
-      <input id="fullName" name="fullName" type="text" class="form-control"  
-      aria-label="Full Name" aria-describedby="Full Name Input" required>
+</head>
+<body>
+
+<header>
+
+</header>
+
+<main class="container">
+    <h1 class="mb-5">Contact Us</h1>
+
+    <div id="messageArea" class="alert alert-danger"></div>
+
+    <div class="row justify-content-lg-justify g-3">
+        <form class="col-lg-6 col-md-10 col-sm-10">
+
+            <div class="input-group mb-3">
+                <span for="Name" class="input-group-text">Full Name</span>
+                <input type="text" class="form-control" name="fullname" id="fullname" aria-describedby="Full Name Input" aria-label="Full name" required>
+            </div>
+            <div class="input-group mb-3">
+                <span for="Email" class="input-group-text">Email address</span>
+                <input type="email" class="form-control" name="EmailAddress" id="EmailAddress" aria-describedby="Email Address Input" aria-label="Email Address" required>
+            </div>
+            <div class="input-group mb-3">
+                <span for="PhoneNumber" class="input-group-text">Contact Number</span>
+                <input type="tel" class="form-control" name="contactnumber" id="contactnumber" aria-describedby="Phone Number Input" aria-label="Phone Number" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <span for="PhoneNumber" class="input-group-text">Your Message</span>
+                <textarea type="text" class="form-control" name="message" id="message" aria-describedby="Phone Number Input" aria-label="Message Area"></textarea>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="subscribeCheckbox" name="subscribeCheckbox">
+                <label class="form-check-label" for="subscribeCheckbox">Subscribe to our contact list</label>
+            </div>
+
+
+            <button id="sendButton" type="submit" class="btn btn-primary"><i class="fas fa-envelope"></i> Submit</button>
+            <button id="cancelButton" type="reset" class="btn btn-warning"><i class="fas fa-undo fa-lg"></i> Cancel</button>
+
+        </form>
+
+
     </div>
+    <br>
+    <div class="col-lg-4 col-md-4">
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">Contact Number</span>
-      <input id="contactNumber" name="contactNumber" type="tel" class="form-control"  
-      aria-label="Contact Number" aria-describedby="Contact Number Input" required>
+        <a href="contact-list.html" class="btn btn-primary btn-sm">
+            <i class="fas fa-users fa-lg">Show Contact List</i></a>
     </div>
+</main>
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">Email address</span>
-      <input id="emailAddress" name="emailAddress" type="email" class="form-control"  
-      aria-label="Email Address" aria-describedby="Email Address Input" required>
-    </div>
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">Your Message</span>
-      <textarea name="message" id="message" class="form-control" aria-label="Message Area" required></textarea>
-    </div>
 
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="subscribeCheckbox" name="subscribeCheckbox">
-      <label class="form-check-label" for="subscribeCheckbox">Subscribe to our Contact List</label>
-    </div>
-
-    <button id="sendButton" type="submit" class="btn btn-primary"><i class="fas fa-envelope fa-lg"></i> Send</button>
-    <button id="cancelButton" type="reset" class="btn btn-warning"><i class="fas fa-undo fa-lg"></i> Cancel</button>
-  </form>
-
-  <div class="col-lg-3 col-md-3">
-    <a data="contact-list" class="btn btn-primary btn-lg"><i class="fas fa-users fa-lg"></i> Show Contact List</a>
-  </div>
-</div>
+<!-- Scripting Section -->
+<script src="../../Scripts/namespace.js"></script>
+<script src="../../Scripts/contact.js"></script>
+<script src="../../Scripts/app.js"></script>
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
