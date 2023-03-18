@@ -220,11 +220,12 @@
     function CheckLogin() {
         if (sessionStorage.getItem("user")) {
             $("#login").html(`<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`);
+
             $("#logout").on("click", function () {
                 sessionStorage.clear();
-                $("#login").html(`<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`);
                 AddNavigationEvents();
                 LoadLink("login");
+
             });
         }
     }
@@ -236,6 +237,7 @@
         $("#loginButton").on("click", function () {
             let success = false;
             let newUser = new core.User();
+
             $.get("./Data/users.json", function (data) {
                 for (const user of data.users) {
                     let username = document.forms[0].username.value;
@@ -249,18 +251,30 @@
                 if (success) {
                     sessionStorage.setItem("user", newUser.serialize());
                     messageArea.removeAttr("class").hide();
+                    console.log("3214")
+                    //$(`<li class="nav-item" data="task-list" href="./Views/content/task-list.html" > <a class="nav-link"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("li");
+
                     LoadLink("contact-list");
+                    //$(`<li class="nav-item"> <a class="nav-link"><i class="fas fa-person-circle-check"> </i>` +  $("#username").val() + `</a>`).insertAfter("li");
+                    //$(`<li class="nav-item" data="task-list"> <a class="nav-link"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("li");
+                    //$(`<li><a class="nav-link" data="task-list" href="./Views/content/task-list.html"><i class="fas fa-envelope"></i> Task List</a></li>`).insertAfter("li");
                 }
                 else {
                     $("#username").trigger("focus").trigger("select");
                     messageArea.addClass("alert alert-danger").text("Error: Invalid Login Information").show();
                 }
             });
+
+            // $(`<li class="nav-item"> <a class="nav-link"><i class="fas fa-person-circle-check"> </i>` +  $("#username").val() + `</a>`).insertAfter("li");
+            // $(`<li class="nav-item" data="task-list"> <a class="nav-link"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("li");
+
+
         });
         $("#cancelButton").on("click", function () {
             document.forms[0].reset();
             LoadLink("home");
         });
+
     }
     function DisplayRegisterPage() {
         console.log("Register Page");
@@ -268,24 +282,7 @@
     }
     function Display404Page() {
     }
-    function ActiveLinkCallBack() {
-        switch (router.ActiveLink) {
-            case "home": return DisplayHomePage;
-            case "about": return DisplayAboutPage;
-            case "products": return DisplayProductsPage;
-            case "services": return DisplayServicesPage;
-            case "contact": return DisplayContactPage;
-            case "contact-list": return DisplayContactListPage;
-            case "edit": return DisplayEditPage;
-            case "login": return DisplayLoginPage;
-            case "register": return DisplayRegisterPage;
-            case "404": return Display404Page;
-            default:
-                console.error("ERROR: callback does not exist: " + router.ActiveLink);
-                return new Function();
-        }
-    }
-    
+
     function DisplayTaskList()
     {
         let messageArea = $("#messageArea");
@@ -370,7 +367,26 @@
             messageArea.show().addClass("alert alert-danger").text("Please enter a valid Task.");
         }
     }
-    
+
+
+    function ActiveLinkCallBack() {
+        switch (router.ActiveLink) {
+            case "home": return DisplayHomePage;
+            case "about": return DisplayAboutPage;
+            case "products": return DisplayProductsPage;
+            case "services": return DisplayServicesPage;
+            case "contact": return DisplayContactPage;
+            case "contact-list": return DisplayContactListPage;
+            case "edit": return DisplayEditPage;
+            case "login": return DisplayLoginPage;
+            case "register": return DisplayRegisterPage;
+            case "404": return Display404Page;
+            case "task-list": return DisplayTaskList;
+            default:
+                console.error("ERROR: callback does not exist: " + router.ActiveLink);
+                return new Function();
+        }
+    }
     function Start() {
         console.log("App Started!");
         LoadHeader();
