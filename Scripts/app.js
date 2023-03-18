@@ -255,17 +255,13 @@
                     messageArea.removeAttr("class").hide();
                     console.log("3214")
                     LoadLink("contact-list");
-                    $(`<li class="nav-item" id="task"> <a class="nav-link" data="task-list" href="./Views/content/task-list.html"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("ul>li#contact");
+                    $(`<li class="nav-item" id="task"> <a class="nav-link" data="task-list"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("ul>li#contact");
                 }
                 else {
                     $("#username").trigger("focus").trigger("select");
                     messageArea.addClass("alert alert-danger").text("Error: Invalid Login Information").show();
                 }
             });
-
-            // $(`<li class="nav-item"> <a class="nav-link"><i class="fas fa-person-circle-check"> </i>` +  $("#username").val() + `</a>`).insertAfter("li");
-            // $(`<li class="nav-item" data="task-list"> <a class="nav-link"><i class="fas fa-person-circle-check"> </i> Task List </a>`).insertAfter("li");
-
 
         });
         $("#cancelButton").on("click", function () {
