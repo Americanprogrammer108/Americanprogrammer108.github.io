@@ -349,8 +349,8 @@
                <li class="list-group-item" id="task">
                <span id="taskText">${taskInput.val()}</span>
                <span class="float-end">
-                   <button class="btn btn-outline-primary btn-sm editButton"><i class="fas fa-edit"></i>
-                   <button class="btn btn-outline-danger btn-sm deleteButton"><i class="fas fa-trash-alt"></i></button>
+                   <button class="btn btn-outline-primary btn-sm editTaskButton"><i class="fas fa-edit"></i>
+                   <button class="btn btn-outline-danger btn-sm deleteTaskButton"><i class="fas fa-trash-alt"></i></button>
                </span>
                <input type="text" class="form-control edit-task editTextInput">
                </li>
